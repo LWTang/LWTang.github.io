@@ -86,22 +86,20 @@
 
 
 
-<meta name="description" content="了解到用hexo、gitpage搭建的博客，使用七牛云存储博客中的图片比较好，遂尝试一波。查看网上的教程，有两种方法：1.使用hexo七牛插件2.将图片存储到七牛云，再使用图片的外链第一种方法写得很详细了，可以参考。此次我使用的是第二种方法，将博客中的图片都上传到blog-image这个空间中，在“内容管理”里面一张一张上传，如下图所示，在markdown文件中插入图片的格式：1![](链接)">
+<meta name="description" content="了解到用hexo、gitpage搭建的博客，使用七牛云存储博客中的图片比较好，遂尝试一波。查看网上的教程，有两种方法：1.使用hexo七牛插件2.将图片存储到七牛云，再使用图片的外链 第一种方法这篇博客写得很详细了，可以参考。但是其中有个小错误，最后会报“Deployer not found”这个错误，解决办法：去掉12plugins:  - hexo-qiniu-sync 然后“hexo s”和">
 <meta name="keywords" content="hexo,图片,七牛云">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo博客使用七牛云存储图片">
 <meta property="og:url" content="http://yoursite.com/2018/11/27/qiniu-store-image/index.html">
 <meta property="og:site_name" content="lwtang&#39;s Blog">
-<meta property="og:description" content="了解到用hexo、gitpage搭建的博客，使用七牛云存储博客中的图片比较好，遂尝试一波。查看网上的教程，有两种方法：1.使用hexo七牛插件2.将图片存储到七牛云，再使用图片的外链第一种方法写得很详细了，可以参考。此次我使用的是第二种方法，将博客中的图片都上传到blog-image这个空间中，在“内容管理”里面一张一张上传，如下图所示，在markdown文件中插入图片的格式：1![](链接)">
+<meta property="og:description" content="了解到用hexo、gitpage搭建的博客，使用七牛云存储博客中的图片比较好，遂尝试一波。查看网上的教程，有两种方法：1.使用hexo七牛插件2.将图片存储到七牛云，再使用图片的外链 第一种方法这篇博客写得很详细了，可以参考。但是其中有个小错误，最后会报“Deployer not found”这个错误，解决办法：去掉12plugins:  - hexo-qiniu-sync 然后“hexo s”和">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://yuchen-lea.github.io/2016-01-21-use-qiniu-store-file-for-hexo/">
 <meta property="og:image" content="http://piu0zam63.bkt.clouddn.com/2018-11-27.jpg">
-<meta property="og:image" content="http://piu0zam63.bkt.clouddn.com/images/AlexNet.jpg">
-<meta property="og:updated_time" content="2018-11-27T08:28:08.066Z">
+<meta property="og:updated_time" content="2018-11-27T09:01:38.994Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo博客使用七牛云存储图片">
-<meta name="twitter:description" content="了解到用hexo、gitpage搭建的博客，使用七牛云存储博客中的图片比较好，遂尝试一波。查看网上的教程，有两种方法：1.使用hexo七牛插件2.将图片存储到七牛云，再使用图片的外链第一种方法写得很详细了，可以参考。此次我使用的是第二种方法，将博客中的图片都上传到blog-image这个空间中，在“内容管理”里面一张一张上传，如下图所示，在markdown文件中插入图片的格式：1![](链接)">
-<meta name="twitter:image" content="https://yuchen-lea.github.io/2016-01-21-use-qiniu-store-file-for-hexo/">
+<meta name="twitter:description" content="了解到用hexo、gitpage搭建的博客，使用七牛云存储博客中的图片比较好，遂尝试一波。查看网上的教程，有两种方法：1.使用hexo七牛插件2.将图片存储到七牛云，再使用图片的外链 第一种方法这篇博客写得很详细了，可以参考。但是其中有个小错误，最后会报“Deployer not found”这个错误，解决办法：去掉12plugins:  - hexo-qiniu-sync 然后“hexo s”和">
+<meta name="twitter:image" content="http://piu0zam63.bkt.clouddn.com/2018-11-27.jpg">
 
 
 
@@ -319,7 +317,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-27T16:28:08+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-27T17:01:38+08:00">
                 2018-11-27
               </time>
             
@@ -374,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  147 字
+                  240 字
                 </span>
               
 
@@ -411,8 +409,11 @@
       
 
       
-        <p>了解到用hexo、gitpage搭建的博客，使用七牛云存储博客中的图片比较好，遂尝试一波。查看网上的教程，有两种方法：<br>1.使用hexo七牛插件<br>2.将图片存储到七牛云，再使用图片的外链<br>第一种方法<img src="https://yuchen-lea.github.io/2016-01-21-use-qiniu-store-file-for-hexo/" alt="这篇博客">写得很详细了，可以参考。<br>此次我使用的是第二种方法，将博客中的图片都上传到blog-image这个空间中，在“内容管理”里面一张一张上传，如下图所示，<br><img src="http://piu0zam63.bkt.clouddn.com/2018-11-27.jpg" alt="七牛云内容管理界面截图"><br>在markdown文件中插入图片的格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](链接)</span><br></pre></td></tr></table></figure></p>
-<img src="http://piu0zam63.bkt.clouddn.com/images/AlexNet.jpg">
+        <p>了解到用hexo、gitpage搭建的博客，使用七牛云存储博客中的图片比较好，遂尝试一波。查看网上的教程，有两种方法：<br>1.使用hexo七牛插件<br>2.将图片存储到七牛云，再使用图片的外链</p>
+<h3 id="第一种方法"><a href="#第一种方法" class="headerlink" title="第一种方法"></a>第一种方法</h3><p><a href="https://yuchen-lea.github.io/2016-01-21-use-qiniu-store-file-for-hexo/" target="_blank" rel="noopener">这篇博客</a>写得很详细了，可以参考。<br>但是其中有个小错误，最后会报“Deployer not found”这个错误，解决办法：<br>去掉<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plugins:</span><br><span class="line">  - hexo-qiniu-sync</span><br></pre></td></tr></table></figure></p>
+<p>然后“hexo s”和“hexo d”命令就不会报错了。<br>接着就是使用了，把图片 demo.jpg 放到本地 xx/cdn/images 文件夹下，再使用命令 hexo qiniu s 同步，最后在需要引用的地方插入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% qnimg demo.jpg %&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="第二种方法"><a href="#第二种方法" class="headerlink" title="第二种方法"></a>第二种方法</h3><p>将博客中的图片都上传到blog-image这个空间中，在“内容管理”里面一张一张上传，如下图所示：<br><img src="http://piu0zam63.bkt.clouddn.com/2018-11-27.jpg" alt=""><br>在markdown文件中插入图片的格式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](链接)</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
     
@@ -475,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/23/hexo-next-setting/" rel="next" title="hexo-next-setting">
-                <i class="fa fa-chevron-left"></i> hexo-next-setting
+              <a href="/2018/11/23/hexo-next-setting/" rel="next" title="hexo-Next主题设置">
+                <i class="fa fa-chevron-left"></i> hexo-Next主题设置
               </a>
             
           </div>
@@ -535,8 +536,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -614,6 +624,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种方法"><span class="nav-number">1.</span> <span class="nav-text">第一种方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种方法"><span class="nav-number">2.</span> <span class="nav-text">第二种方法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
