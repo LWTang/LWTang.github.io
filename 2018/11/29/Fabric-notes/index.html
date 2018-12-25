@@ -94,14 +94,13 @@
 <meta property="og:site_name" content="唐礼威的博客">
 <meta property="og:description" content="Key Concepts every participant has their own replicated copy of the ledger,share the ledger information,share the processes updating the ledger. what is hyperledger fabric? is a system by which partic">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://piu0zam63.bkt.clouddn.com/images/fabric-network.jpg">
-<meta property="og:image" content="http://piu0zam63.bkt.clouddn.com/images/private-data.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyiqqb2q8xj313z1cytq0.jpg">
-<meta property="og:updated_time" content="2018-12-25T01:38:48.018Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir0wc88bj30kf09kju2.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir1fcy0kj30je0ad764.jpg">
+<meta property="og:updated_time" content="2018-12-25T01:46:49.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fabric-notes">
 <meta name="twitter:description" content="Key Concepts every participant has their own replicated copy of the ledger,share the ledger information,share the processes updating the ledger. what is hyperledger fabric? is a system by which partic">
-<meta name="twitter:image" content="http://piu0zam63.bkt.clouddn.com/images/fabric-network.jpg">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir0wc88bj30kf09kju2.jpg">
 
 
 
@@ -319,7 +318,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-25T09:38:48+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-12-25T09:46:49+08:00">
                 2018-12-25
               </time>
             
@@ -419,15 +418,12 @@
 <li>offers the ability to create channels.</li>
 <li>通道用来保持事务在整个网络上的私有，在一个通道里，又使用私有数据集合来保证子组织数据的私有。</li>
 </ol>
-<h4 id="private-data"><a href="#private-data" class="headerlink" title="private data"></a>private data</h4><img src="http://piu0zam63.bkt.clouddn.com/images/fabric-network.jpg">
-<p>通常一个通道上的账本是一致的，这时候，要想有私有数据，就要再创建一个通道，但这么做的开销很大（链码版本、通道策略等等），所以Fabric 1.2版本开始支持创建私有数据集，即一个通道上的组织子集，去背书、提交、查询，不需要创建单独的通道。<br>私有数据集包含2个元素：</p>
+<h4 id="private-data"><a href="#private-data" class="headerlink" title="private data"></a>private data</h4><p><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir0wc88bj30kf09kju2.jpg"><br>通常一个通道上的账本是一致的，这时候，要想有私有数据，就要再创建一个通道，但这么做的开销很大（链码版本、通道策略等等），所以Fabric 1.2版本开始支持创建私有数据集，即一个通道上的组织子集，去背书、提交、查询，不需要创建单独的通道。<br>私有数据集包含2个元素：</p>
 <ol>
 <li>private data：存储在私有数据库（SideDB）中，发送给有权限查看的组织。</li>
-<li>hash of data：在通道上所有peer的账本中，用于事务的校验。<img src="http://piu0zam63.bkt.clouddn.com/images/private-data.jpg">
-私有数据集 vs 一个单独的通道<br>要求账本对一组peers保密，使用通道。</li>
+<li>hash of data：在通道上所有peer的账本中，用于事务的校验。<br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir1fcy0kj30je0ad764.jpg"><br>私有数据集 vs 一个单独的通道<br>要求账本对一组peers保密，使用通道。</li>
 </ol>
 <p>包含私有数据集的事务流和普通的事务流不同。</p>
-<p><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyiqqb2q8xj313z1cytq0.jpg"></p>
 
       
     </div>
