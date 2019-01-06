@@ -94,13 +94,19 @@
 <meta property="og:site_name" content="唐礼威的博客">
 <meta property="og:description" content="Key Concepts every participant has their own replicated copy of the ledger,share the ledger information,share the processes updating the ledger. what is hyperledger fabric? is a system by which partic">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2o92p4bj30kf09kju2.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2ojbxdlj30jq09a41e.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx26rtipdj30jr08x0v2.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2gyv1nhj30jn078ac9.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2hcn916j30jb07k0v6.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2hnyh0cj30ji06yq55.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir0wc88bj30kf09kju2.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir1fcy0kj30je0ad764.jpg">
-<meta property="og:updated_time" content="2018-12-25T07:35:59.390Z">
+<meta property="og:updated_time" content="2019-01-06T11:07:02.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fabric-notes">
 <meta name="twitter:description" content="Key Concepts every participant has their own replicated copy of the ledger,share the ledger information,share the processes updating the ledger. what is hyperledger fabric? is a system by which partic">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir0wc88bj30kf09kju2.jpg">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2o92p4bj30kf09kju2.jpg">
 
 
 
@@ -318,8 +324,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-12-25T15:35:59+08:00">
-                2018-12-25
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-06T19:07:02+08:00">
+                2019-01-06
               </time>
             
           </span>
@@ -373,7 +379,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  588 字
+                  778 字
                 </span>
               
 
@@ -417,6 +423,12 @@
 <li>different from other blockchain systems: it is private and permissioned.</li>
 <li>offers the ability to create channels.</li>
 <li>通道用来保持事务在整个网络上的私有，在一个通道里，又使用私有数据集合来保证子组织数据的私有。</li>
+</ol>
+<h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2o92p4bj30kf09kju2.jpg"><br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2ojbxdlj30jq09a41e.jpg"></p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx26rtipdj30jr08x0v2.jpg"><br>注：对于查询，到第3步就结束了；对于update来说，还需要后面的步骤。A builds a transaction from all of the responses.<br>背书：引申为对某个事情负责，在共识机制的投票环节里，背书意味着参与投票。</p>
+<h3 id="更新账本"><a href="#更新账本" class="headerlink" title="更新账本"></a>更新账本</h3><ol>
+<li>每个背书结点给app一个更新账本的背书<br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2gyv1nhj30jn078ac9.jpg"></li>
+<li>orderer收集这些独立的背书在一起作为交易打包成块。<br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2hcn916j30jb07k0v6.jpg"><br>注：app把所有背书都给orderer吗？<br>3.将块添加到每个peer的账本中，添加之前要验证。<br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2hnyh0cj30ji06yq55.jpg"><br>注：如果应用程序发送了错误的事务，违反了签注策略，在第三阶段的验证过程中，对等方仍然可以拒绝该事务。？？？</li>
 </ol>
 <h3 id="private-data"><a href="#private-data" class="headerlink" title="private data"></a>private data</h3><p><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir0wc88bj30kf09kju2.jpg"><br>通常一个通道上的账本是一致的，这时候，要想有私有数据，就要再创建一个通道，但这么做的开销很大（链码版本、通道策略等等），所以Fabric 1.2版本开始支持创建私有数据集，即一个通道上的组织子集，去背书、提交、查询，不需要创建单独的通道。</p>
 <p>私有数据集包含2个元素：</p>
@@ -654,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Concepts"><span class="nav-number">1.</span> <span class="nav-text">Key Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#private-data"><span class="nav-number">2.</span> <span class="nav-text">private data</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Concepts"><span class="nav-number">1.</span> <span class="nav-text">Key Concepts</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构"><span class="nav-number">2.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程"><span class="nav-number">3.</span> <span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新账本"><span class="nav-number">4.</span> <span class="nav-text">更新账本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#private-data"><span class="nav-number">5.</span> <span class="nav-text">private data</span></a></li></ol></div>
             
 
           </div>
@@ -674,7 +686,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
