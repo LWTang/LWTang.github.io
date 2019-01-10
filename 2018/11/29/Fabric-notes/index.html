@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir0wc88bj30kf09kju2.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir1fcy0kj30je0ad764.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1fyy3x4dapqj30iw0kvdjk.jpg">
-<meta property="og:updated_time" content="2019-01-07T08:51:19.841Z">
+<meta property="og:updated_time" content="2019-01-10T07:55:30.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fabric-notes">
 <meta name="twitter:description" content="Key Concepts every participant has their own replicated copy of the ledger,share the ledger information,share the processes updating the ledger. what is hyperledger fabric? is a system by which partic">
@@ -325,8 +325,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-01-07T16:51:19+08:00">
-                2019-01-07
+              <time title="更新于" itemprop="dateModified" datetime="2019-01-10T15:55:30+08:00">
+                2019-01-10
               </time>
             
           </span>
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.8k 字
+                  2k 字
                 </span>
               
 
@@ -396,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  8 分钟
+                  9 分钟
                 </span>
               
             </div>
@@ -428,9 +428,9 @@
 <h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2o92p4bj30kf09kju2.jpg"><br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2ojbxdlj30jq09a41e.jpg"></p>
 <h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx26rtipdj30jr08x0v2.jpg"><br>注：对于查询，到第3步就结束了；对于update来说，还需要后面的步骤。A builds a transaction from all of the responses.<br>背书：引申为对某个事情负责，在共识机制的投票环节里，背书意味着参与投票。</p>
 <h3 id="更新账本"><a href="#更新账本" class="headerlink" title="更新账本"></a>更新账本</h3><ol>
-<li>每个背书结点给app一个更新账本的背书。<br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2gyv1nhj30jn078ac9.jpg"></li>
-<li>orderer收集这些独立的背书在一起作为交易打包成块。<br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2hcn916j30jb07k0v6.jpg"><br>注：app把所有背书都给orderer吗？</li>
-<li>将块添加到每个peer的账本中，添加之前要验证。<br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2hnyh0cj30ji06yq55.jpg"><br>注：如果应用程序发送了错误的事务，违反了签注策略，在第三阶段的验证过程中，对等方仍然可以拒绝该事务。？？？</li>
+<li>每个背书结点给app一个更新账本的背书。这个背书阶段<a href="https://hyperledger-fabric.readthedocs.io/en/release-1.2/txflow.html" target="_blank" rel="noopener"><strong>不更新账本</strong></a>。<br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2gyv1nhj30jn078ac9.jpg"></li>
+<li>orderer收集这些独立的背书在一起作为交易打包成块。包含读写集合、背书peer的签名、channel id，每个channel打包成一个block。<br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2hcn916j30jb07k0v6.jpg"><br>注：app把所有背书都给orderer吗？</li>
+<li>将块添加到每个peer的链上，根据交易修改数据库。在这之前要验证，验证背书策略的执行、read 变量没有被修改。<br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyx2hnyh0cj30ji06yq55.jpg"><br>注：如果应用程序发送了错误的事务，违反了签注策略，在第三阶段的验证过程中，对等方仍然可以拒绝该事务。？？？</li>
 </ol>
 <h3 id="private-data"><a href="#private-data" class="headerlink" title="private data"></a>private data</h3><p><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir0wc88bj30kf09kju2.jpg"><br>通常一个通道上的账本是一致的，这时候，要想有私有数据，就要再创建一个通道，但这么做的开销很大（链码版本、通道策略等等），所以Fabric 1.2版本开始支持创建私有数据集，即一个通道上的组织子集，去背书、提交、查询，不需要创建单独的通道。</p>
 <p>私有数据集包含2个元素：</p>
@@ -438,17 +438,18 @@
 <li>private data：<br>存储在私有数据库（SideDB）中，发送给有权限查看的组织。不同于一般数据，私有数据在组织间通过gossip协议<strong>点对点</strong>传输，所以orderer服务是看不到私有数据的。</li>
 <li>hash of data：<br>在通道上所有peer的账本中，用于事务的校验，作为交易的证据。</li>
 </ol>
-<p><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir1fcy0kj30je0ad764.jpg"><br>私有数据集 vs 一个单独的通道<br>要求账本对一组peers保密，使用通道。</p>
+<p><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyir1fcy0kj30je0ad764.jpg"><br>私有数据集 vs 一个单独的通道<br>当交易的所有信息需要对一些组织保密时，使用通道。<br>当交易的一部分信息需要对一些组织保密时，使用私有数据集。</p>
 <p>包含私有数据集的事务流和普通的事务流不同，私有数据的交易流程：</p>
 <ol>
 <li>app提交一个读写私有数据的请求，到授权的背书结点。</li>
-<li>背书结点模拟执行交易，将私有数据存储，并通过gossip协议发送到授权的peer。</li>
-<li>背书结点把处理结果放在公共数据中返回给app，包括私有数据的键值和内容的hash，私有数据本身<strong>不会</strong>返回给应用。</li>
-<li>app提交交易到orderer结点，orderer结点照常打包block，然后分发到各个peer结点，这样，所有的peer都能独立的验证包含私有数据的交易，而不需要知道私有数据的内容。</li>
-<li>区块验证阶段，被授权的peer判定自己是否有权读取私有数据。如果有权限，会先验证本地的私有数据来判断是否在背书阶段就收到了私有数据，如果没有，就会从其它peer拉取。</li>
+<li>背书结点模拟执行交易，将私有数据存储（到临时数据存储），并通过gossip协议发送到授权的peer。</li>
+<li>背书结点把处理结果放在公共数据中返回给app，包括私有数据（键值和内容）的hash，私有数据本身<strong>不会</strong>返回给应用。</li>
+<li>app提交交易到orderer结点（包含私有数据的hash），orderer结点照常打包block，然后分发到各个peer结点，这样，所有的peer都能独立的验证包含私有数据hash的交易，而不需要知道私有数据的内容。</li>
+<li>区块验证阶段会add a block（包含hash和transaction info），被授权的peer判定自己是否有权读取私有数据。如果有权限，会先验证本地的私有数据（临时存储）来判断是否在背书阶段就收到了私有数据，如果没有，就会从其它peer拉取。交易提交之后删除临时存储区。</li>
 </ol>
 <h4 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h4><p>参照<a href="https://hyperledger-fabric.readthedocs.io/en/release-1.2/private_data_tutorial.html#start-the-network" target="_blank" rel="noopener">https://hyperledger-fabric.readthedocs.io</a>完成。<br>参考如下图marbles private data sample.<br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1fyy3x4dapqj30iw0kvdjk.jpg"><br>权限描述的json文件：collections_config.json<br>  -name：集合名<br>  -policy：能够访问集合的peers<br>  -requiredPeerCount：需要传播私有数据的peer数<br>  -maxPeerCount：<br>  -blockToLive：数据在私有数据库上能够存在的时间(例如，3表示3个block，后面的block仅仅保留hash，没有数据；0表示无限期)</p>
 <h5 id="1-start-the-network"><a href="#1-start-the-network" class="headerlink" title="1. start the network"></a>1. start the network</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./byfn.sh up -c mychannel -s couchdb</span><br></pre></td></tr></table></figure>
+<p>crypto-config.yaml：generate a set of certificates<br>ca-cert：root certificate<br>configtx.yaml：contains the definitions of network</p>
 <h5 id="2-install-chaincode"><a href="#2-install-chaincode" class="headerlink" title="2. install chaincode"></a>2. install chaincode</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it cli bash</span><br><span class="line"></span><br><span class="line">export CORE_PEER_ADDRESS=peer0.org1.example.com:7051</span><br><span class="line">peer chaincode install -n marblesp -v 1.0 -p github.com/chaincode/marbles02_private/go/</span><br><span class="line"></span><br><span class="line">export CORE_PEER_LOCALMSPID=Org2MSP</span><br><span class="line">export PEER0_ORG2_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt</span><br><span class="line">export CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_ORG2_CA</span><br><span class="line">export CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org2.example.com/users/Admin@org2.example.com/msp</span><br><span class="line">export CORE_PEER_ADDRESS=peer0.org2.example.com:7051</span><br><span class="line">peer chaincode install -n marblesp -v 1.0 -p github.com/chaincode/marbles02_private/go/</span><br></pre></td></tr></table></figure>
 <h5 id="3-instantiate-the-chaincode-on-the-channel"><a href="#3-instantiate-the-chaincode-on-the-channel" class="headerlink" title="3. instantiate the chaincode on the channel"></a>3. instantiate the chaincode on the channel</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export ORDERER_CA=.../xx.pem</span><br><span class="line">peer chaincode instantiate -o orderer.example.com:7050 --tls --cafile $ORDERER_CA -C mychannel -n marblesp -v 1.0 -c &apos;&#123;&quot;Args&quot;:[&quot;init&quot;]&#125;&apos; -P &quot;OR(&apos;Org1MSP.member&apos;,&apos;Org2MSP.member&apos;)&quot; --collections-config  $GOPATH/src/github.com/chaincode/marbles02_private/collections_config.json</span><br></pre></td></tr></table></figure>
 <h5 id="4-store-private-data"><a href="#4-store-private-data" class="headerlink" title="4. store private data"></a>4. store private data</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export CORE_PEER_ADDRESS=peer0.org1.example.com:7051</span><br><span class="line">export CORE_PEER_LOCALMSPID=Org1MSP</span><br><span class="line">export CORE_PEER_TLS_ROOTCERT_FILE=.../ca.crt</span><br><span class="line">export CORE_PEER_MSPCONFIGPATH=.../msp</span><br><span class="line">export PEER0_ORG1_CA=.../ca.crt</span><br><span class="line"></span><br><span class="line">peer chaincode invoke -o orderer.example.com:7050 ... -C mychannel -n marblesp -c &apos;&#123;&quot;Args&quot;:[&quot;initMarble&quot;,&quot;marble1&quot;,&quot;blue&quot;,&quot;35&quot;,&quot;tom&quot;,&quot;99&quot;]&#125;&apos;</span><br></pre></td></tr></table></figure>
