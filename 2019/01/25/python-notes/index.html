@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="唐礼威的博客">
 <meta property="og:description" content="enumeratePython内置的enumerate函数可以把一个list变成索引-元素对123456&amp;gt;&amp;gt;&amp;gt; for i, value in enumerate([&amp;apos;A&amp;apos;, &amp;apos;B&amp;apos;, &amp;apos;C&amp;apos;]):...     print(i, value)...0 A1 B2 C isinstance判断一个变量是否是某个类型可以用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-27T09:06:32.807Z">
+<meta property="og:updated_time" content="2019-03-04T08:06:02.699Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python笔记">
 <meta name="twitter:description" content="enumeratePython内置的enumerate函数可以把一个list变成索引-元素对123456&amp;gt;&amp;gt;&amp;gt; for i, value in enumerate([&amp;apos;A&amp;apos;, &amp;apos;B&amp;apos;, &amp;apos;C&amp;apos;]):...     print(i, value)...0 A1 B2 C isinstance判断一个变量是否是某个类型可以用">
@@ -315,8 +315,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-27T17:06:32+08:00">
-                2019-02-27
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-04T16:06:02+08:00">
+                2019-03-04
               </time>
             
           </span>
@@ -370,7 +370,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  183 字
+                  565 字
                 </span>
               
 
@@ -386,7 +386,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -435,6 +435,29 @@
 </ul>
 <p>现在要在modules1.py里import function1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from .modules2 import function1</span><br></pre></td></tr></table></figure></p>
 <p>要在modules3里import class1和function2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from . import class1</span><br><span class="line">from .subpackage1.modules5 import function2</span><br></pre></td></tr></table></figure></p>
+<h3 id="flask-blueprint"><a href="#flask-blueprint" class="headerlink" title="flask blueprint"></a>flask blueprint</h3><p>目录结构：</p>
+<ul>
+<li>app<ul>
+<li>__init__.py</li>
+<li>main<ul>
+<li>__init__.py</li>
+<li>views.py</li>
+<li>errors.py</li>
+</ul>
+</li>
+<li>auth<ul>
+<li>__init__.py</li>
+<li>views.py</li>
+<li>errors.py</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># app/main/__init__.py</span><br><span class="line"></span><br><span class="line">from flask import Blueprint</span><br><span class="line"></span><br><span class="line">main = Blueprint(&apos;main&apos;, __name__)</span><br><span class="line"></span><br><span class="line">from . import views,errors</span><br></pre></td></tr></table></figure>
+<p>通过实例化一个Blueprint类来创建蓝本。这里import views和errors要放在实例化之后，因为views和errors模块要import main，如果放在实例化之前的话会导入出错。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># app/main/errors.py</span><br><span class="line"></span><br><span class="line">from flask import render_template</span><br><span class="line">from . import main</span><br><span class="line"></span><br><span class="line">@main.app_errorhandler(404)</span><br><span class="line">def page_not_found(e):</span><br><span class="line">  return render_template(&apos;404.html&apos;),404</span><br><span class="line"></span><br><span class="line">@main.app_errorhandler(500)</span><br><span class="line">def internal_server_error(e):</span><br><span class="line">  return render_template(&apos;500.html&apos;),500</span><br></pre></td></tr></table></figure></p>
+<p>在蓝本中编写错误处理程序稍有不同，如果使用errorhandler装饰器，那么只有蓝本中的错误才能触发处理程序。要想注册应用全局的错误处理程序，必须使用app_errorhandler装饰器。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># app/main/views.py</span><br><span class="line"></span><br><span class="line">from flask import render_template, redirect, url_for</span><br><span class="line">from . import main</span><br><span class="line"></span><br><span class="line">@main.route(&apos;/&apos;, methods=[&apos;GET&apos;, &apos;POST&apos;])</span><br><span class="line">def index():</span><br><span class="line">  ...</span><br><span class="line">  return redirect(url_for(&apos;main.index&apos;))</span><br></pre></td></tr></table></figure></p>
+<p>蓝本的视图函数主要有两点不同：第一，路由装饰器由蓝本提供，因此使用的是main.route，而非app.route；第二url_for()函数的用法不同，在应用的路由中，默认为视图函数的名称，例如，index()视图函数的url可使用url_for(‘index’)获取。在蓝本中，flask会为蓝本中的全部端点加上一个命名空间，这样就可以在不同的蓝本中使用相同的端点名定义视图函数。因此，上面代码中视图函数index()注册的端点名是main.index，其url使用url_for(‘main.index’)获取。</p>
 
       
     </div>
@@ -656,7 +679,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#enumerate"><span class="nav-number">1.</span> <span class="nav-text">enumerate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isinstance"><span class="nav-number">2.</span> <span class="nav-text">isinstance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#os-path-dirname"><span class="nav-number">3.</span> <span class="nav-text">os.path.dirname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#super"><span class="nav-number">4.</span> <span class="nav-text">super</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相对路径的import"><span class="nav-number">5.</span> <span class="nav-text">相对路径的import</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#enumerate"><span class="nav-number">1.</span> <span class="nav-text">enumerate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isinstance"><span class="nav-number">2.</span> <span class="nav-text">isinstance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#os-path-dirname"><span class="nav-number">3.</span> <span class="nav-text">os.path.dirname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#super"><span class="nav-number">4.</span> <span class="nav-text">super</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相对路径的import"><span class="nav-number">5.</span> <span class="nav-text">相对路径的import</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flask-blueprint"><span class="nav-number">6.</span> <span class="nav-text">flask blueprint</span></a></li></ol></div>
             
 
           </div>

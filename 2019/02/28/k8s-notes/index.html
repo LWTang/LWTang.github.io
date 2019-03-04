@@ -96,7 +96,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1g0m5l73x9ij30nv0hydl0.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1g0m63qjjvrj30bv07pabs.jpg">
-<meta property="og:updated_time" content="2019-02-28T08:03:46.156Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1g0m8fp3h7tj30h1068wfm.jpg">
+<meta property="og:updated_time" content="2019-02-28T09:00:47.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kubenetes笔记">
 <meta name="twitter:description" content="k8s是什么是一个基于容器技术的分布式架构，目的是实现资源管理的自动化。 k8s基本概念 Master每个k8s集群有一个master节点来负责整个集群的管理和控制。如果它宕机了，那么所有的控制命令都将失效。master上运行着以下一组进程：  Kubenetes API Server(kube-apiserver) Kebenetes Controller Manager(kube-contro">
@@ -318,7 +319,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-28T16:03:46+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2019-02-28T17:00:47+08:00">
                 2019-02-28
               </time>
             
@@ -373,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  545 字
+                  707 字
                 </span>
               
 
@@ -421,7 +422,7 @@
 <h4 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h4><p>除了master，k8s集群中其它机器称为Node节点，每个node节点会被master分配一些工作负载(docker容器)。<br>每个Node上运行以下一组进程：</p>
 <ul>
 <li>kubelet: 负责pod对应的容器的创建、启停等</li>
-<li>kube-proxy: 实现k8s service的通信</li>
+<li>kube-proxy: 实现k8s service的通信，实际上就是一个<strong>负载均衡器</strong>，它负责把对service的请求转发到后端的某个pod上</li>
 <li>docker engine: 负责本机的容器创建、管理等</li>
 </ul>
 <h4 id="Pod"><a href="#Pod" class="headerlink" title="Pod"></a>Pod</h4><p>每个Pod都有一个Pause容器(根容器)，除了Pause容器，每个Pod还包含一个或多个业务相关容器。<br><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1g0m63qjjvrj30bv07pabs.jpg"></p>
@@ -431,8 +432,12 @@
 </ul>
 <h4 id="namespace"><a href="#namespace" class="headerlink" title="namespace"></a>namespace</h4><p>用于实现多租户的资源隔离，即将集群内部资源对象分配到不同的namespace中。集群在启动时会创建一个名为“default”的namespace。</p>
 <h4 id="label"><a href="#label" class="headerlink" title="label"></a>label</h4><p>一个label是一个key-value键值对，label可以附加到各种资源对象上，例如node、pod、service、rc等，一个资源对象可以定义任意数量的label，一个label也可以被添加到任意数量的资源对象上。</p>
-<h3 id="命令行指令"><a href="#命令行指令" class="headerlink" title="命令行指令"></a>命令行指令</h3><p>查看namespace：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get namespace = kubectl get ns</span><br></pre></td></tr></table></figure></p>
-<p>查看某个namespace中的对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods --namespace=[]</span><br></pre></td></tr></table></figure></p>
+<h4 id="service"><a href="#service" class="headerlink" title="service"></a>service</h4><p><img src="http://ww1.sinaimg.cn/large/005Vtkpbly1g0m8fp3h7tj30h1068wfm.jpg"></p>
+<p>每个service就是微服务架构中的“微服务”，service定义了一个服务的访问入口地址，前端的应用通过这个地址访问后端的一组pod组成的集群实例，service和后端是通过label来标识的。</p>
+<h3 id="IP问题"><a href="#IP问题" class="headerlink" title="IP问题"></a>IP问题</h3><p>k8s里有3中ip：<br>Node ip：Node节点的ip，物理网卡的ip地址<br>Pod ip：每个pod的ip，通常是虚拟的二层网络<br>Cluster ip：Service的ip，也是一个虚拟的ip</p>
+<h3 id="命令行指令"><a href="#命令行指令" class="headerlink" title="命令行指令"></a>命令行指令</h3><p>查看nodes：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes</span><br><span class="line">kubectl describe node [nodename]</span><br></pre></td></tr></table></figure></p>
+<p>查看namespace：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get namespace</span><br><span class="line">简写：</span><br><span class="line">kubectl get ns</span><br></pre></td></tr></table></figure></p>
+<p>查看某个namespace中的对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods --namespace=[]</span><br><span class="line">简写：</span><br><span class="line">kubectl get pods -n []</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo kubectl get pods -n kube-system</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">镜像：</span><br><span class="line">docker images</span><br><span class="line"></span><br><span class="line">容器：</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
 <h3 id="镜像-vs-容器"><a href="#镜像-vs-容器" class="headerlink" title="镜像 vs 容器"></a>镜像 vs 容器</h3><p>镜像是静态的，每一层都只是可读的。</p>
@@ -658,7 +663,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#k8s是什么"><span class="nav-number">1.</span> <span class="nav-text">k8s是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k8s基本概念"><span class="nav-number">2.</span> <span class="nav-text">k8s基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Master"><span class="nav-number">2.1.</span> <span class="nav-text">Master</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Node"><span class="nav-number">2.2.</span> <span class="nav-text">Node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pod"><span class="nav-number">2.3.</span> <span class="nav-text">Pod</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#namespace"><span class="nav-number">2.4.</span> <span class="nav-text">namespace</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#label"><span class="nav-number">2.5.</span> <span class="nav-text">label</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行指令"><span class="nav-number">3.</span> <span class="nav-text">命令行指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像-vs-容器"><span class="nav-number">4.</span> <span class="nav-text">镜像 vs 容器</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#k8s是什么"><span class="nav-number">1.</span> <span class="nav-text">k8s是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k8s基本概念"><span class="nav-number">2.</span> <span class="nav-text">k8s基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Master"><span class="nav-number">2.1.</span> <span class="nav-text">Master</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Node"><span class="nav-number">2.2.</span> <span class="nav-text">Node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pod"><span class="nav-number">2.3.</span> <span class="nav-text">Pod</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#namespace"><span class="nav-number">2.4.</span> <span class="nav-text">namespace</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#label"><span class="nav-number">2.5.</span> <span class="nav-text">label</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#service"><span class="nav-number">2.6.</span> <span class="nav-text">service</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP问题"><span class="nav-number">3.</span> <span class="nav-text">IP问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行指令"><span class="nav-number">4.</span> <span class="nav-text">命令行指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#镜像-vs-容器"><span class="nav-number">5.</span> <span class="nav-text">镜像 vs 容器</span></a></li></ol></div>
             
 
           </div>
