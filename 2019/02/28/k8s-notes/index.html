@@ -97,7 +97,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1g0m5l73x9ij30nv0hydl0.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1g0m63qjjvrj30bv07pabs.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005Vtkpbly1g0m8fp3h7tj30h1068wfm.jpg">
-<meta property="og:updated_time" content="2019-02-28T09:00:47.359Z">
+<meta property="og:updated_time" content="2019-03-13T08:23:52.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kubenetes笔记">
 <meta name="twitter:description" content="k8s是什么是一个基于容器技术的分布式架构，目的是实现资源管理的自动化。 k8s基本概念 Master每个k8s集群有一个master节点来负责整个集群的管理和控制。如果它宕机了，那么所有的控制命令都将失效。master上运行着以下一组进程：  Kubenetes API Server(kube-apiserver) Kebenetes Controller Manager(kube-contro">
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2019-02-28T17:00:47+08:00">
-                2019-02-28
+              <time title="更新于" itemprop="dateModified" datetime="2019-03-13T16:23:52+08:00">
+                2019-03-13
               </time>
             
           </span>
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  707 字
+                  723 字
                 </span>
               
 
@@ -439,7 +439,7 @@
 <p>查看namespace：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get namespace</span><br><span class="line">简写：</span><br><span class="line">kubectl get ns</span><br></pre></td></tr></table></figure></p>
 <p>查看某个namespace中的对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods --namespace=[]</span><br><span class="line">简写：</span><br><span class="line">kubectl get pods -n []</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo kubectl get pods -n kube-system</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">镜像：</span><br><span class="line">docker images</span><br><span class="line"></span><br><span class="line">容器：</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">镜像：</span><br><span class="line">docker images</span><br><span class="line">镜像删除：</span><br><span class="line">docker rmi -f xxx</span><br><span class="line"></span><br><span class="line">容器：</span><br><span class="line">docker ps</span><br><span class="line">容器删除：</span><br><span class="line">docker rm -f xxx</span><br></pre></td></tr></table></figure>
 <h3 id="镜像-vs-容器"><a href="#镜像-vs-容器" class="headerlink" title="镜像 vs 容器"></a>镜像 vs 容器</h3><p>镜像是静态的，每一层都只是可读的。</p>
 <p>容器是动态的，通过镜像创建容器就是在镜像上加一个可读写的层，容器中运行着应用，而且并不会作用到镜像里。</p>
 
