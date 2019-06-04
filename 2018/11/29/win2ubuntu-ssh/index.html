@@ -94,7 +94,7 @@
 <meta property="og:site_name" content="唐礼威的博客">
 <meta property="og:description" content="最近想用宿舍的笔记本远程控制实验室的电脑，实验室电脑上装的是Ubuntu18.04LTS，宿舍笔记本是windows10。了解到Ubuntu是预装了ssh-client的，但是没装ssh-server，这里很明显是要把它作为ssh-server使用的，运行下列指令进行安装：1sudo apt-get install openssh-server 然后打开服务：1sudo /etc/init.d/s">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-29T07:34:38.785Z">
+<meta property="og:updated_time" content="2018-11-28T23:34:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="windows客户端通过ssh连接Ubuntu主机">
 <meta name="twitter:description" content="最近想用宿舍的笔记本远程控制实验室的电脑，实验室电脑上装的是Ubuntu18.04LTS，宿舍笔记本是windows10。了解到Ubuntu是预装了ssh-client的，但是没装ssh-server，这里很明显是要把它作为ssh-server使用的，运行下列指令进行安装：1sudo apt-get install openssh-server 然后打开服务：1sudo /etc/init.d/s">
@@ -315,7 +315,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-11-29T15:34:38+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-11-29T07:34:38+08:00">
                 2018-11-29
               </time>
             
@@ -407,10 +407,10 @@
       
 
       
-        <p>最近想用宿舍的笔记本远程控制实验室的电脑，实验室电脑上装的是Ubuntu18.04LTS，宿舍笔记本是windows10。<br>了解到Ubuntu是预装了ssh-client的，但是没装ssh-server，这里很明显是要把它作为ssh-server使用的，运行下列指令进行安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure></p>
-<p>然后打开服务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/ssh start</span><br></pre></td></tr></table></figure></p>
-<p>这里运行完后提示“用ssh.service”开始ssh，以为没能开启成功，于是又运行了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start ssh</span><br></pre></td></tr></table></figure></p>
-<p>后来分析，后面这条命令应该是多余的。至此，ssh-server打开成功。<br>在宿舍电脑上用ssh-client连接就好了，我使用的是gitbash进行连接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh username@ip地址</span><br></pre></td></tr></table></figure></p>
+        <p>最近想用宿舍的笔记本远程控制实验室的电脑，实验室电脑上装的是Ubuntu18.04LTS，宿舍笔记本是windows10。<br>了解到Ubuntu是预装了ssh-client的，但是没装ssh-server，这里很明显是要把它作为ssh-server使用的，运行下列指令进行安装：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install openssh-server</span><br></pre></td></tr></table></figure></p>
+<p>然后打开服务：<br><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="regexp">/etc/i</span>nit.d<span class="regexp">/ssh start</span></span><br></pre></td></tr></table></figure></p>
+<p>这里运行完后提示“用ssh.service”开始ssh，以为没能开启成功，于是又运行了：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="literal">start</span> ssh</span><br></pre></td></tr></table></figure></p>
+<p>后来分析，后面这条命令应该是多余的。至此，ssh-server打开成功。<br>在宿舍电脑上用ssh-client连接就好了，我使用的是gitbash进行连接：<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssh</span> username<span class="variable">@ip</span>地址</span><br></pre></td></tr></table></figure></p>
 <p>username和ip都是Ubuntu机器的。连接成功，可以愉快地玩耍了~</p>
 
       
@@ -555,7 +555,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -577,7 +577,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
